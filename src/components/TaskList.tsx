@@ -56,6 +56,9 @@ export function TaskList() {
             type="text"
             placeholder="Add new task"
             onChange={(e) => setNewTaskTitle(e.target.value)}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") handleCreateNewTask();
+            }}
             value={newTaskTitle}
           />
           <button
