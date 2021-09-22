@@ -1,39 +1,40 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import React from "react";
 import { TaskList } from "../../components/TaskList";
 
 describe("App Page", () => {
   it("should be able to add a task", async () => {
     render(<TaskList />);
 
-    const taskInput = screen.getByPlaceholderText("Add new task");
+    const taskInput = screen.getByPlaceholderText("Adicionar novo todo");
     const addTaskButton = screen.getByTestId("add-task-button");
 
     fireEvent.change(taskInput, {
       target: {
-        value: "New taks",
+        value: "Desafio ReactJS Ignite",
       },
     });
     fireEvent.click(addTaskButton);
 
-    const addedFirstTaskTitle = screen.getByText("New taks");
+    const addedFirstTaskTitle = screen.getByText("Desafio ReactJS Ignite");
 
-    expect(addedFirstTaskTitle).toHaveTextContent("New taks");
+    expect(addedFirstTaskTitle).toHaveTextContent("Desafio ReactJS Ignite");
     expect(addedFirstTaskTitle.parentElement).not.toHaveClass("completed");
 
     fireEvent.change(taskInput, {
       target: {
-        value: "Drink water",
+        value: "Beber água",
       },
     });
     fireEvent.click(addTaskButton);
 
-    const addedSecondTaskTitle = screen.getByText("Drink water");
+    const addedSecondTaskTitle = screen.getByText("Beber água");
 
     expect(addedFirstTaskTitle).toBeInTheDocument();
-    expect(addedFirstTaskTitle).toHaveTextContent("New taks");
+    expect(addedFirstTaskTitle).toHaveTextContent("Desafio ReactJS Ignite");
     expect(addedFirstTaskTitle.parentElement).not.toHaveClass("completed");
 
-    expect(addedSecondTaskTitle).toHaveTextContent("Drink water");
+    expect(addedSecondTaskTitle).toHaveTextContent("Beber água");
     expect(addedSecondTaskTitle.parentElement).not.toHaveClass("completed");
   });
 
@@ -46,43 +47,43 @@ describe("App Page", () => {
 
     expect(screen.queryByTestId("task")).not.toBeInTheDocument();
 
-    const taskInput = screen.getByPlaceholderText("Add new task");
+    const taskInput = screen.getByPlaceholderText("Adicionar novo todo");
 
     fireEvent.change(taskInput, {
       target: {
-        value: "New taks",
+        value: "Desafio ReactJS Ignite",
       },
     });
 
     fireEvent.click(addTaskButton);
 
-    const addedFirstTaskTitle = screen.getByText("New taks");
+    const addedFirstTaskTitle = screen.getByText("Desafio ReactJS Ignite");
 
-    expect(addedFirstTaskTitle).toHaveTextContent("New taks");
+    expect(addedFirstTaskTitle).toHaveTextContent("Desafio ReactJS Ignite");
   });
 
   it("should be able to remove a task", async () => {
     render(<TaskList />);
 
-    const taskInput = screen.getByPlaceholderText("Add new task");
+    const taskInput = screen.getByPlaceholderText("Adicionar novo todo");
     const addTaskButton = screen.getByTestId("add-task-button");
 
     fireEvent.change(taskInput, {
       target: {
-        value: "New taks",
+        value: "Desafio ReactJS Ignite",
       },
     });
     fireEvent.click(addTaskButton);
 
     fireEvent.change(taskInput, {
       target: {
-        value: "Drink water",
+        value: "Beber água",
       },
     });
     fireEvent.click(addTaskButton);
 
-    const addedFirstTaskTitle = screen.getByText("New taks");
-    const addedSecondTaskTitle = screen.getByText("Drink water");
+    const addedFirstTaskTitle = screen.getByText("Desafio ReactJS Ignite");
+    const addedSecondTaskTitle = screen.getByText("Beber água");
 
     expect(addedFirstTaskTitle).toBeInTheDocument();
     expect(addedSecondTaskTitle).toBeInTheDocument();
@@ -99,19 +100,19 @@ describe("App Page", () => {
   it("should be able to check a task", () => {
     render(<TaskList />);
 
-    const taskInput = screen.getByPlaceholderText("Add new task");
+    const taskInput = screen.getByPlaceholderText("Adicionar novo todo");
     const addTaskButton = screen.getByTestId("add-task-button");
 
     fireEvent.change(taskInput, {
       target: {
-        value: "New taks",
+        value: "Desafio ReactJS Ignite",
       },
     });
     fireEvent.click(addTaskButton);
 
     fireEvent.change(taskInput, {
       target: {
-        value: "Drink water",
+        value: "Beber água",
       },
     });
     fireEvent.click(addTaskButton);
